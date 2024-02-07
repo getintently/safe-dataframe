@@ -82,4 +82,5 @@ suppress-none-returning = true
 max-doc-length = 79
 
 [tool.ruff.extend-per-file-ignores]
+"safe_dataframe/__init__.py" = ["F401"]
 "tests/**/*.py" = ["S101", "PLR2004"]
