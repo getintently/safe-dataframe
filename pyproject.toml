@@ -1,0 +1,84 @@
+[tool.poetry]
+name = "safe_dataframe"
+version = "0.1.0"
+description = ""
+authors = ["Arseniy Shchepetonv"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+loguru = "^0.7.2"
+pandas = "^2.2.0"
+pydantic = "^2.6.1"
+pandera = "^0.18.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.2.1"
+mypy = "^1.8.0"
+pytest = "^8.0.0"
+isort = "^5.13.2"
+black = "^24.1.1"
+pandas-stubs = "^2.1.4.231227"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff.isort]
+known-third-party = ["mypy_boto3_sqs"]
+
+[tool.black]
+line-length = 79
+
+[tool.ruff]
+target-version = "py310"
+line-length = 79
+select = [
+    "F",
+    "E",
+    "W",
+    "I",
+    "N",
+    "D",
+    "UP",
+    "YTT",
+    "ANN",
+    "S",
+    "BLE",
+    "FBT",
+    "B",
+    "A",
+    "C4",
+    "DTZ",
+    "T10",
+    "ICN",
+    "INP",
+    "PIE",
+    "T20",
+    "PT",
+    "Q",
+    "RSE",
+    "RET",
+    "SLF",
+    "SIM",
+    "TCH",
+    "ARG",
+    "PTH",
+    "ERA",
+    "PL",
+    "TRY",
+    "RUF",
+]
+ignore = ["ANN101", "ANN102", "ANN002", "ANN003", "D107", "FBT001"]
+
+[tool.ruff.flake8-annotations]
+suppress-none-returning = true
+
+
+[tool.ruff.pycodestyle]
+max-doc-length = 79
+
+[tool.ruff.extend-per-file-ignores]
+"tests/**/*.py" = ["S101", "PLR2004"]
