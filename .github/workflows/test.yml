@@ -1,0 +1,44 @@
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install poetry
+      run: pipx install poetry
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+        cache: "poetry"
+
+    - name: Install dependencies
+      run: |
+        poetry lock --no-update
+        poetry install --sync
+
+    - name: Lint tests with ruff
+      run: |
+        poetry run ruff check --no-fix .
+
+    - name: Lint tests with mypy
+      run: |
+        poetry run mypy --install-types --non-interactive --ignore-missing-imports .
+
+    - name: Test with pytest
+      run: |
+        poetry run pytest tests

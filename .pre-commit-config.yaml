@@ -1,0 +1,40 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+- repo: local
+  hooks:
+
+    - id: python-black
+      verbose: true
+      name: Black Formatter
+      entry: poetry run black
+      language: system
+      stages:
+        - commit
+      types:
+        - python
+
+    - id: python-ruff
+      verbose: true
+      name: Ruff Linter
+      entry: poetry run ruff check --fix
+      language: system
+      stages:
+        - commit
+      types:
+        - python
+
+    - id: python-mypy
+      verbose: true
+      name: MyPy type check
+      entry: poetry run mypy
+      language: system
+      stages:
+        - commit
+      types:
+        - python

@@ -20,6 +20,7 @@ pytest = "^8.0.0"
 isort = "^5.13.2"
 black = "^24.1.1"
 pandas-stubs = "^2.1.4.231227"
+pre-commit = "^3.6.0"
 
 [build-system]
 requires = ["poetry-core"]
